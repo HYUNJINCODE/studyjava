@@ -20,4 +20,8 @@ public class DurationEvent extends Event {
         return begin.compareTo(date) <=0 && end.compareTo(date) >=0;
     }
 
+    @Override
+    public MyDate getRepresentativeDate() {
+        return begin;
+    }
 }

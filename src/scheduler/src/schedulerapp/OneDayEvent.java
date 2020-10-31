@@ -18,4 +18,9 @@ public class OneDayEvent extends Event {
             return true;
         return false;
     }
+
+    @Override
+    public MyDate getRepresentativeDate() {
+        return date;
+    }
 }

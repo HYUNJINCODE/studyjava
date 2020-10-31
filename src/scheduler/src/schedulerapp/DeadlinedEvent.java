@@ -16,4 +16,9 @@ public class DeadlinedEvent extends Event {
     public boolean isRelevant(MyDate date) {
         return deadline.compareTo(date) >=0;
     }
+
+    @Override
+    public MyDate getRepresentativeDate() {
+        return deadline;
+    }
 }

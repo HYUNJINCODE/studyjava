@@ -1,6 +1,6 @@
 package schedulerapp;
 
-public abstract class Event {
+public abstract class Event implements Comparable {
     String title;
 
     public Event(String title) {
@@ -8,5 +8,11 @@ public abstract class Event {
     }
 
     public abstract boolean isRelevant(MyDate date);
+    public abstract MyDate getRepresentativeDate();
 
+    public int compareTo(Object other)  {
+        MyDate mine =getRepresentativeDate();
+        MyDate yours = ((Event)other).getRepresentativeDate();
+        return mine.compareTo(yours);
+    }
 }
