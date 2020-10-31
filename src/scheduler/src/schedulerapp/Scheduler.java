@@ -29,7 +29,7 @@ public class Scheduler {
                 handleList();
             }
             else if(command.equals("show")) {
-
+                handleShow();
             }
             else if(command.equals("exit")) {
                 break;
@@ -37,6 +37,18 @@ public class Scheduler {
         }
         kb.close();
     }
+
+    private void handleShow() {
+        String dateString = kb.next();
+        MyDate theDate = parseDateString(dateString);
+        for (int i = 0; i<n; i++) {
+            //test if events[i] is relevant to the date,then print it
+            if(events[i].isRelevant(theDate))
+                System.out.println(events[i].toString());
+        }
+
+    }
+
     public void handleAddOneDayEvent() {
         System.out.print("  when: ");
         String dateString = kb.next();

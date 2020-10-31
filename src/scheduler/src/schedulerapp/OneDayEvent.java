@@ -13,4 +13,9 @@ public class OneDayEvent extends Event {
         return title + ", " + date.toString();
     }
 
+    public boolean isRelevant(MyDate date) {
+        if(this.date.compareTo(date) == 0)
+            return true;
+        return false;
+    }
 }

@@ -12,4 +12,8 @@ public class DeadlinedEvent extends Event {
     public String toString() {
         return title + ", " + deadline.toString();
     }
+
+    public boolean isRelevant(MyDate date) {
+        return deadline.compareTo(date) >=0;
+    }
 }
