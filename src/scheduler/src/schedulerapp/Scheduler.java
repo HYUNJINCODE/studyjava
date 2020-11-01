@@ -1,14 +1,14 @@
 package schedulerapp;
 
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Scheduler {
-
-    private int capacity = 10;
-    public Event[] events = new Event[10];
-    public int n = 0;
+    public ArrayList<Event> events = new ArrayList<>();
+    //private int capacity = 10;
+    //public Event[] events = new Event[10];
+    //public int n = 0;
+    //arraylist쓰면서 다필요없어짐
     private Scanner kb;
 
     public void processCommand() {
@@ -33,7 +33,8 @@ public class Scheduler {
                 handleShow();
             }
             else if(command.equals("sort")) {
-                Arrays.sort(events,0,n);
+//                Arrays.sort(events,0,n);
+                Collections.sort(events);
             }
             else if(command.equals("exit")) {
                 break;
@@ -45,10 +46,10 @@ public class Scheduler {
     private void handleShow() {
         String dateString = kb.next();
         MyDate theDate = parseDateString(dateString);
-        for (int i = 0; i<n; i++) {
+        for (int i = 0; i<events.size(); i++) {
             //test if events[i] is relevant to the date,then print it
-            if(events[i].isRelevant(theDate))
-                System.out.println(events[i].toString());
+            if(events.get(i).isRelevant(theDate))
+                System.out.println(events.get(i).toString());
         }
 
     }
@@ -80,28 +81,28 @@ public class Scheduler {
         return d;
     }
     private void handleList() {
-        for (int i = 0; i <n; i++) {
-            System.out.println("   " + events[i].toString());
+        for (int i = 0; i <events.size(); i++) {
+            System.out.println("   " + events.get(i).toString());
         }
     }
 
     private void addEvent(OneDayEvent ev) {
-        if(n>=capacity) {
-            reallocate();
-        }
-        events[n++] = ev;
+//        if(n>=capacity) {
+//            reallocate();
+//        }
+        events.add(ev);
     }
 
-    private void reallocate() {
-        Event[] tmp = new Event[capacity*2];
-        for(int i=0; i<n; i++) {
-            tmp[i] = events[i];
-        }
-        events = tmp;
-        capacity *=2;
-
-        //버려진 배열은 garbage c나c++에서는 내가처리해야하지만 java에서는 garbage collection (auto)
-    }
+//    private void reallocate() {
+//        Event[] tmp = new Event[capacity*2];
+//        for(int i=0; i<n; i++) {
+//            tmp[i] = events[i];
+//        }
+//        events = tmp;
+//        capacity *=2;
+//
+//        //버려진 배열은 garbage c나c++에서는 내가처리해야하지만 java에서는 garbage collection (auto)
+//    }
 
     public static void main(String[] args) {
         Scheduler app = new Scheduler();
