@@ -69,8 +69,28 @@ public class MySingleLinkedList<T> {
         }
     }
 
-    public void remove(int index) {
+    public T remove(int index) {
+        if(index <0|| index>=size)
+            return null;
+        if(index==0)
+            return removeFirst();
+        Node<T> prev = getNode(index-1);
+        return removeAfter(prev);
 
+    }
+    public T remove(T item) {
+        Node<T> p = head, q=null;
+
+        while (p!=null && !p.data.equals(item)){
+            q = p;
+            p=p.next;
+
+        }
+        if(p==null)
+            return null;
+        if(q==null)
+            return removeFirst();
+        return removeAfter(q);
     }
 
     public int indexOf(T item) {
