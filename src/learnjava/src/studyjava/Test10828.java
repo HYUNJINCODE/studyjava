@@ -1,2 +1,5 @@
-package studyjava;public class Test10828 {
+package studyjava;
+
+public class Test10828 {
+
 }
